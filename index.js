@@ -1,6 +1,7 @@
 require("update-electron-app")();
 
 const Nucleus = require("nucleus-analytics");
+const robot = require("robotjs");
 
 const path = require("path");
 const {
@@ -65,6 +66,16 @@ app.on("ready", () => {
 
   app.on("web-contents-created", (e, contents) => {
     if (contents.getType() == "webview") {
+      contents.on("dom-ready", () => {
+        // Simulate a 'tab' keypress (this focuses the webview properly, so textbox can be focused)
+        mainWindow.show();
+        mainWindow.focus();
+        robot.keyTap("tab");
+
+        setTimeout(function () {
+          mainWindow.webContents.send("focus-textbox");
+        }, 1000);
+      });
       // open link with external browser in webview
       contents.on("new-window", (e, url) => {
         e.preventDefault();

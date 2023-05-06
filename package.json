@@ -9,7 +9,8 @@
     "package": "electron-forge package --arch arm64,x64",
     "make": " electron-forge make --arch arm64,x64",
     "publish": "electron-forge publish --arch arm64,x64",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "rebuild": "electron-rebuild"
   },
   "keywords": [
     "chatgpt",
@@ -25,6 +26,7 @@
     "electron-context-menu": "^3.6.0",
     "menubar": "^9.2.3",
     "nucleus-analytics": "^4.0.3",
+    "robotjs": "^0.6.0",
     "update-electron-app": "^2.0.1"
   },
   "repository": {
@@ -41,6 +43,7 @@
     "@electron-forge/publisher-github": "^6.0.4",
     "dotenv": "^16.0.3",
     "electron": "^21.0.0",
+    "electron-rebuild": "^3.2.9",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
