@@ -1,24 +1,9 @@
-# ChatGPT for desktop
+# Windowed ChatGPT with auto focus
 
-This is a simple app that makes ChatGPT live in your menubar.
+This app wraps ChatGPT in a tab-able window. The primary functionality this app adds is auto-focus on the prompt textbox (on window refocus or tab change) to allow for easier input and better compatability with Alfred workflows (coming soon).
 
-You can use Cmd+Shift+G (Mac) or Ctrl+Shift+G (Win) to quickly open it from anywhere.
-
-Download:
-
-- [Mac Arm64 .dmg](https://github.com/vincelwt/chatgpt-mac/releases/download/v0.0.5/ChatGPT-0.0.5-arm64.dmg)
-- [Mac Intel .dmg](https://github.com/vincelwt/chatgpt-mac/releases/download/v0.0.5/ChatGPT-0.0.5-x64.dmg)
-
-No Windows binaries currently offered. Clone the repo, npm install electron-forge and run.
-
-<p align="center">
-  <img src="./images/screenshot.jpeg" width="500">
-</p>
+Inspired by @vincelwt's [chatgpt-mac](https://github.com/vincelwt/chatgpt-mac), which formed the foundation of this app.
 
 ## Credit
 
-All credit and copyrights goes to OpenAI.
-
-## Author
-
-You can find me on Twitter [@vincelwt](https://twitter.com/vincelwt).
+All credit and copyrights goes to OpenAI and @vincelwt.

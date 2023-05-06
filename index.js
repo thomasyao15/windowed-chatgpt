@@ -1,17 +1,9 @@
 require("update-electron-app")();
 
 const Nucleus = require("nucleus-analytics");
-const robot = require("robotjs");
 
 const path = require("path");
-const {
-  app,
-  nativeImage,
-  BrowserWindow,
-  Menu,
-  globalShortcut,
-  shell,
-} = require("electron");
+const { app, nativeImage, BrowserWindow, Menu, shell } = require("electron");
 const contextMenu = require("electron-context-menu");
 
 const image = nativeImage.createFromPath(
