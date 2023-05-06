@@ -1,13 +1,12 @@
 require("update-electron-app")();
 
-const { menubar } = require("menubar");
 const Nucleus = require("nucleus-analytics");
 
 const path = require("path");
 const {
   app,
   nativeImage,
-  Tray,
+  BrowserWindow,
   Menu,
   globalShortcut,
   shell,
@@ -21,106 +20,47 @@ const image = nativeImage.createFromPath(
 app.on("ready", () => {
   Nucleus.init("638d9ccf4a5ed2dae43ce122");
 
-  const tray = new Tray(image);
-
-  const mb = menubar({
-    browserWindow: {
-      icon: image,
-      transparent: path.join(__dirname, `images/iconApp.png`),
-      webPreferences: {
-        webviewTag: true,
-        // nativeWindowOpen: true,
-        preload: path.join(__dirname, "preload.js"),
-      },
-      width: 2050,
-      height: 1550,
-    },
-    tray,
-    showOnAllWorkspaces: true,
-    preloadWindow: true,
-    showDockIcon: false,
+  const mainWindow = new BrowserWindow({
     icon: image,
+    transparent: path.join(__dirname, `images/iconApp.png`),
+    webPreferences: {
+      webviewTag: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
+    width: 2050,
+    height: 1440,
+    autoHideMenuBar: false,
   });
 
-  mb.on("ready", () => {
-    const { window } = mb;
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-    if (process.platform !== "darwin") {
-      window.setSkipTaskbar(true);
-    } else {
-      app.dock.hide();
-    }
+  // // Register the global shortcut
+  // const shortcutRegistered = globalShortcut.register(
+  //   "CommandOrControl+Shift+g",
+  //   () => {
+  //     if (mainWindow.isVisible()) {
+  //       mainWindow.hide();
+  //     } else {
+  //       mainWindow.show();
+  //       mainWindow.focus();
+  //       // mainWindow.webContents.send("focus-textbox");
+  //     }
+  //   }
+  // );
 
-    const contextMenuTemplate = [
-      // add links to github repo and vince's twitter
-      {
-        label: "Quit",
-        accelerator: "Command+Q",
-        click: () => {
-          app.quit();
-        },
-      },
-      {
-        label: "Reload",
-        accelerator: "Command+R",
-        click: () => {
-          window.reload();
-        },
-      },
-      {
-        label: "Open in browser",
-        click: () => {
-          shell.openExternal("https://chat.openai.com/chat");
-        },
-      },
-      {
-        type: "separator",
-      },
-      {
-        label: "View on GitHub",
-        click: () => {
-          shell.openExternal("https://github.com/vincelwt/chatgpt-mac");
-        },
-      },
-      {
-        label: "Author on Twitter",
-        click: () => {
-          shell.openExternal("https://twitter.com/vincelwt");
-        },
-      },
-    ];
+  // if (!shortcutRegistered) {
+  //   console.log("Shortcut registration failed");
+  // }
 
-    tray.on("right-click", () => {
-      mb.tray.popUpContextMenu(Menu.buildFromTemplate(contextMenuTemplate));
-    });
+  mainWindow.on("focus", () => {
+    mainWindow.webContents.send("focus-textbox");
+  });
 
-    tray.on("click", (e) => {
-      //check if ctrl or meta key is pressed while clicking
-      e.ctrlKey || e.metaKey
-        ? mb.tray.popUpContextMenu(Menu.buildFromTemplate(contextMenuTemplate))
-        : null;
-    });
+  mainWindow.on("ready", () => {
     const menu = new Menu();
-
-    globalShortcut.register("CommandOrControl+Shift+g", () => {
-      if (window.isVisible()) {
-        mb.hideWindow();
-      } else {
-        mb.showWindow();
-        if (process.platform == "darwin") {
-          mb.app.show();
-        }
-        mb.app.focus();
-        window.webContents.send("focus-textbox");
-      }
-    });
-
     Menu.setApplicationMenu(menu);
 
-    // open devtools
-    // window.webContents.openDevTools();
-
-    console.log("Menubar app is ready.");
+    console.log("Standalone app is ready.");
   });
 
   app.on("web-contents-created", (e, contents) => {
@@ -151,12 +91,12 @@ app.on("ready", () => {
     }
   });
 
-  if (process.platform == "darwin") {
-    // restore focus to previous app on hiding
-    mb.on("after-hide", () => {
-      mb.app.hide();
-    });
-  }
+  // if (process.platform == "darwin") {
+  //   // restore focus to previous app on hiding
+  //   mainWindow.on("after-hide", () => {
+  //     mainWindow.hide();
+  //   });
+  // }
 
   // open links in new window
   // app.on("web-contents-created", (event, contents) => {
