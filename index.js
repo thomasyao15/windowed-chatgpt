@@ -30,9 +30,10 @@ app.on("ready", () => {
       webPreferences: {
         webviewTag: true,
         // nativeWindowOpen: true,
+        preload: path.join(__dirname, "preload.js"),
       },
-      width: 450,
-      height: 550,
+      width: 2050,
+      height: 1550,
     },
     tray,
     showOnAllWorkspaces: true,
@@ -43,7 +44,6 @@ app.on("ready", () => {
 
   mb.on("ready", () => {
     const { window } = mb;
-
 
     if (process.platform !== "darwin") {
       window.setSkipTaskbar(true);
@@ -111,6 +111,7 @@ app.on("ready", () => {
           mb.app.show();
         }
         mb.app.focus();
+        window.webContents.send("focus-textbox");
       }
     });
 
