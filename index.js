@@ -23,6 +23,7 @@ app.on("ready", () => {
     width: 765, // max width before chat switcher pane shows
     height: 1440,
     autoHideMenuBar: false,
+    frame: false, // make title bar invisible
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);

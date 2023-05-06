@@ -9,6 +9,20 @@
 
 <body class="myarrow">
   <tab-group new-tab-button="true" sortable="true">
+    <style>
+      .views {
+        background-color: rgb(46, 47, 57);
+      }
+
+      .nav {
+        -webkit-app-region: drag;
+      }
+
+      .nav button,
+      .tabs {
+        -webkit-app-region: no-drag;
+      }
+    </style>
   </tab-group>
   <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
   <script>
