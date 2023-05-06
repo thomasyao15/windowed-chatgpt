@@ -23,12 +23,13 @@ app.on("ready", () => {
 
   const mainWindow = new BrowserWindow({
     icon: image,
-    transparent: path.join(__dirname, `images/iconApp.png`),
+    // transparent: path.join(__dirname, `images/iconApp.png`),
     webPreferences: {
       webviewTag: true,
       preload: path.join(__dirname, "preload.js"),
     },
-    width: 2050,
+    width: 765, // max width before chat switcher pane shows
+    maxWidth: 765,
     height: 1440,
     autoHideMenuBar: false,
   });
