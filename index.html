@@ -8,38 +8,51 @@
 </head>
 
 <body class="myarrow">
-  <div class="page darwin">
-    <webview id="webview" src="https://chat.openai.com/chat" autosize="on">
-    </webview>
-  </div>
+  <tab-group new-tab-button="true" sortable="true">
+  </tab-group>
+  <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
   <script>
-    const webview = document.getElementById('webview');
-    webview.addEventListener('dom-ready', function () {
-
-      // hide message below text input, sidebar, suggestions on new chat
-      webview.insertCSS(`
-        .text-xs.text-center {
-          opacity: 0;
-          height: 0;
-          margin-bottom: -10px;
-        }
-      `)
-
-      const element = webview.executeJavaScript(`
-        document.querySelector("[class*='shared__Wrapper']").innerHTML += "<h3>Start by asking anything.</h3>"
-      `);
-
-      window.electronAPI.onFocusTextbox((_event) => {
-        webview.executeJavaScript(`
-        setTimeout(function() {
-          const textarea = document.querySelector('textarea');
-          textarea.placeholder = 'Auto focused this textbox';
-          textarea.focus();
-        }, 200);
-      `);
-      })
+    const tabGroup = document.querySelector("tab-group");
+    const tab = tabGroup.addTab({
+      title: "GPT",
+      src: "https://chat.openai.com/chat",
+      active: true,
+    });
+    tabGroup.setDefaultTab({
+      title: "New GPT",
+      src: "https://chat.openai.com/chat",
+      active: true
     });
   </script>
+  <script>
+    const focusIframeAndTextbox = function () {
+      setTimeout(function () {
+        const tabGroupShadowRoot = tabGroup.shadowRoot;
+        const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
+        const webviewShadowRoot = activeWebview.shadowRoot;
+        const iframe = webviewShadowRoot.querySelector('iframe');
+        iframe.focus(); // this needs to get focused instead of the webview for the textarea to get properly focused!
+
+        activeWebview.executeJavaScript(`
+          setTimeout(function() {
+            const randomNumber = Math.floor(Math.random() * 1000000);
+            const textarea = document.querySelector('textarea');
+            textarea.placeholder = 'Auto focused this textbox: ' + randomNumber;
+            textarea.focus();
+          }, 100);
+        `);
+      }, 100)
+    }
+
+    tabGroup.on("tab-active", (tab, tabGroup) => {
+      focusIframeAndTextbox();
+    });
+
+    window.electronAPI.onFocusTextbox((_event) => {
+      focusIframeAndTextbox();
+    })
+  </script>
+
 </body>
 
 </html>

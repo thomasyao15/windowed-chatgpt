@@ -29,7 +29,6 @@ app.on("ready", () => {
       preload: path.join(__dirname, "preload.js"),
     },
     width: 765, // max width before chat switcher pane shows
-    maxWidth: 765,
     height: 1440,
     autoHideMenuBar: false,
   });
@@ -71,7 +70,7 @@ app.on("ready", () => {
         // Simulate a 'tab' keypress (this focuses the webview properly, so textbox can be focused)
         mainWindow.show();
         mainWindow.focus();
-        robot.keyTap("tab");
+        // robot.keyTap("tab");
 
         setTimeout(function () {
           mainWindow.webContents.send("focus-textbox");

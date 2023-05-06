@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "electron-context-menu": "^3.6.0",
+    "electron-tabs": "^1.0.1",
     "menubar": "^9.2.3",
     "nucleus-analytics": "^4.0.3",
     "robotjs": "^0.6.0",
