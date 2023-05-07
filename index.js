@@ -3,7 +3,14 @@ require("update-electron-app")();
 const Nucleus = require("nucleus-analytics");
 
 const path = require("path");
-const { app, nativeImage, BrowserWindow, Menu, shell } = require("electron");
+const {
+  app,
+  nativeImage,
+  BrowserWindow,
+  Menu,
+  shell,
+  globalShortcut,
+} = require("electron");
 const contextMenu = require("electron-context-menu");
 
 const image = nativeImage.createFromPath(
@@ -28,23 +35,23 @@ app.on("ready", () => {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-  // // Register the global shortcut
-  // const shortcutRegistered = globalShortcut.register(
-  //   "CommandOrControl+Shift+g",
-  //   () => {
-  //     if (mainWindow.isVisible()) {
-  //       mainWindow.hide();
-  //     } else {
-  //       mainWindow.show();
-  //       mainWindow.focus();
-  //       // mainWindow.webContents.send("focus-textbox");
-  //     }
-  //   }
-  // );
+  // Register the global shortcut
+  const shortcutRegistered = globalShortcut.register(
+    "CommandOrControl+Shift+g",
+    () => {
+      if (mainWindow.isVisible()) {
+        mainWindow.hide();
 
-  // if (!shortcutRegistered) {
-  //   console.log("Shortcut registration failed");
-  // }
+        // restore focus to the previous app on mac
+        if (process.platform == "darwin") {
+          app.hide();
+        }
+      } else {
+        mainWindow.show();
+        mainWindow.focus();
+      }
+    }
+  );
 
   mainWindow.on("focus", () => {
     mainWindow.webContents.send("focus-textbox");
@@ -79,28 +86,29 @@ app.on("ready", () => {
         window: contents,
       });
 
-      // we can't set the native app menu with "menubar" so need to manually register these events
-      // register cmd+c/cmd+v events
       contents.on("before-input-event", (event, input) => {
         const { control, meta, key } = input;
         if (!control && !meta) return;
-        if (key === "c") contents.copy();
-        if (key === "v") contents.paste();
-        if (key === "a") contents.selectAll();
-        if (key === "z") contents.undo();
-        if (key === "y") contents.redo();
-        if (key === "q") app.quit();
-        if (key === "r") contents.reload();
+        if (key === "t") {
+          console.log("cmd+t pressed");
+          mainWindow.webContents.send("new-tab-shortcut");
+        }
+        if (key === "w") {
+          event.preventDefault();
+          console.log("cmd+w pressed");
+          mainWindow.webContents.send("close-tab-shortcut");
+        }
+        if (key === "]") {
+          console.log("cmd+] pressed");
+          mainWindow.webContents.send("next-tab-shortcut");
+        }
+        if (key === "[") {
+          console.log("cmd+[ pressed");
+          mainWindow.webContents.send("prev-tab-shortcut");
+        }
       });
     }
   });
-
-  // if (process.platform == "darwin") {
-  //   // restore focus to previous app on hiding
-  //   mainWindow.on("after-hide", () => {
-  //     mainWindow.hide();
-  //   });
-  // }
 
   // open links in new window
   // app.on("web-contents-created", (event, contents) => {

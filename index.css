@@ -37,6 +37,16 @@ body {
   }
 } */
 
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  z-index: 9999;
+}
+
 .page {
   background: #eeeeee;
   width: 100%;
