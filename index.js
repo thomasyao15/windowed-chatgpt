@@ -35,23 +35,19 @@ app.on("ready", () => {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-  // Register the global shortcut
-  const shortcutRegistered = globalShortcut.register(
-    "CommandOrControl+Shift+g",
-    () => {
-      if (mainWindow.isVisible()) {
-        mainWindow.hide();
+  globalShortcut.register("CommandOrControl+Shift+g", () => {
+    if (mainWindow.isVisible() && mainWindow.isFocused()) {
+      mainWindow.hide();
 
-        // restore focus to the previous app on mac
-        if (process.platform == "darwin") {
-          app.hide();
-        }
-      } else {
-        mainWindow.show();
-        mainWindow.focus();
+      // restore focus to the previous app on mac
+      if (process.platform == "darwin") {
+        app.hide();
       }
+    } else {
+      mainWindow.show();
+      mainWindow.focus();
     }
-  );
+  });
 
   mainWindow.on("focus", () => {
     mainWindow.webContents.send("focus-textbox");
@@ -67,10 +63,8 @@ app.on("ready", () => {
   app.on("web-contents-created", (e, contents) => {
     if (contents.getType() == "webview") {
       contents.on("dom-ready", () => {
-        // Simulate a 'tab' keypress (this focuses the webview properly, so textbox can be focused)
         mainWindow.show();
         mainWindow.focus();
-        // robot.keyTap("tab");
 
         setTimeout(function () {
           mainWindow.webContents.send("focus-textbox");
