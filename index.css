@@ -6,37 +6,6 @@ body {
   overflow: hidden;
 }
 
-:root {
-  /* account for the arrow */
-  /* --actual-height: calc(100vh - 12px); */
-}
-
-.myarrow {
-  /* position: relative; */
-  /* padding-top: 12px; */
-  /* padding: 12px 0 0 0 ; */
-}
-
-/* .myarrow:before {
-  content: '';
-  height: 0;
-  width: 0;
-  border-width: 0 8px 12px 8px;
-  border-style: solid;
-  border-color: transparent transparent white transparent;
-  position: absolute;
-
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  .myarrow:before {
-    border-color: transparent transparent #343541 transparent !important;
-  }
-} */
-
 .close-button {
   position: absolute;
   top: 0;
@@ -55,11 +24,6 @@ body {
   margin: 0 auto;
   position: relative;
 }
-
-/* .darwin.page {
-  border-radius: 8px;
-  overflow: hidden;
-} */
 
 webview {
   /* overflow: hidden; */

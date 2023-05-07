@@ -1,9 +1,10 @@
 {
   "name": "windowed-chatgpt",
-  "productName": "windowed-chatgpt",
+  "productName": "ChatGPT",
   "version": "0.0.1",
   "description": "Windowed ChatGPT with auto focus",
   "main": "index.js",
+  "icon": "./images/icon.png",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package --arch arm64,x64",
@@ -26,7 +27,6 @@
     "electron-context-menu": "^3.6.0",
     "electron-tabs": "^1.0.1",
     "menubar": "^9.2.3",
-    "nucleus-analytics": "^4.0.3",
     "update-electron-app": "^2.0.1"
   },
   "repository": {
@@ -45,5 +45,12 @@
     "electron": "^21.0.0",
     "electron-rebuild": "^3.2.9",
     "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "path/to/icon.icns"
+      }
+    }
   }
 }

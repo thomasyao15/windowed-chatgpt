@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="index.css" />
 </head>
 
-<body class="myarrow">
+<body>
   <tab-group new-tab-button="true" sortable="true">
     <style>
       .views {
@@ -33,7 +33,7 @@
       active: true,
     });
     tabGroup.setDefaultTab({
-      title: "New GPT",
+      title: "GPT",
       src: "https://chat.openai.com/chat",
       active: true
     });
@@ -78,9 +78,8 @@
 
         activeWebview.executeJavaScript(`
           setTimeout(function() {
-            const randomNumber = Math.floor(Math.random() * 1000000);
             const textarea = document.querySelector('textarea');
-            textarea.placeholder = 'Auto focused this textbox: ' + randomNumber;
+            textarea.placeholder = 'Auto focused this textbox';
             textarea.focus();
           }, 100);
         `);

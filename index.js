@@ -1,7 +1,5 @@
 require("update-electron-app")();
 
-const Nucleus = require("nucleus-analytics");
-
 const path = require("path");
 const {
   app,
@@ -40,8 +38,6 @@ function createWindow() {
 }
 
 app.on("ready", () => {
-  Nucleus.init("638d9ccf4a5ed2dae43ce122");
-
   let lastFocusedWindow = createWindow();
 
   globalShortcut.register("CommandOrControl+Shift+g", () => {
@@ -60,11 +56,15 @@ app.on("ready", () => {
 
   const template = [
     {
-      label: "My Electron App",
+      label: "ChatGPT",
       submenu: [
-        { role: "about" },
-        { type: "separator" },
-        { role: "services" },
+        {
+          label: "Github",
+          click: () =>
+            shell.openExternal(
+              "https://github.com/thomasyao15/windowed-chatgpt"
+            ),
+        },
         { type: "separator" },
         { role: "hide" },
         { role: "hideothers" },
@@ -72,10 +72,6 @@ app.on("ready", () => {
         { type: "separator" },
         { role: "quit" },
       ],
-    },
-    {
-      label: "File",
-      submenu: [{ role: "close" }],
     },
     {
       label: "Edit",
@@ -94,8 +90,6 @@ app.on("ready", () => {
     {
       label: "View",
       submenu: [
-        { role: "reload" },
-        { role: "forceReload" },
         { role: "toggleDevTools" },
         { type: "separator" },
         { role: "resetZoom" },
@@ -108,28 +102,19 @@ app.on("ready", () => {
     {
       label: "Window",
       submenu: [
-        { role: "minimize" },
-        { role: "zoom" },
-        { type: "separator" },
         {
           label: "New Window",
           accelerator: "CmdOrCtrl+N",
           click: () => createWindow(),
         },
+        { role: "reload" },
+        { role: "forceReload" },
+        { role: "close" },
+        { type: "separator" },
+        { role: "minimize" },
+        { role: "zoom" },
         { type: "separator" },
         { role: "front" },
-      ],
-    },
-    {
-      role: "help",
-      submenu: [
-        {
-          label: "Learn More",
-          click: async () => {
-            const { shell } = require("electron");
-            await shell.openExternal("https://electronjs.org");
-          },
-        },
       ],
     },
   ];
@@ -168,11 +153,6 @@ app.on("ready", () => {
       contents.on("before-input-event", (event, input) => {
         const { control, meta, key } = input;
         if (!control && !meta) return;
-        if (key === "n") {
-          console.log("cmd+n pressed");
-          lastFocusedWindow = createWindow();
-        }
-
         if (key === "t") {
           console.log("cmd+t pressed");
           lastFocusedWindow.webContents.send("new-tab-shortcut");
