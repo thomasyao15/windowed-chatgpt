@@ -17,64 +17,70 @@ const image = nativeImage.createFromPath(
   path.join(__dirname, `images/newiconTemplate.png`)
 );
 
-app.on("ready", () => {
-  Nucleus.init("638d9ccf4a5ed2dae43ce122");
-
-  const mainWindow = new BrowserWindow({
+function createWindow() {
+  const win = new BrowserWindow({
     icon: image,
-    // transparent: path.join(__dirname, `images/iconApp.png`),
     webPreferences: {
       webviewTag: true,
       preload: path.join(__dirname, "preload.js"),
     },
-    width: 765, // max width before chat switcher pane shows
+    width: 765,
     height: 1440,
     autoHideMenuBar: false,
-    frame: false, // make title bar invisible
+    frame: false,
   });
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  win.loadURL(`file://${__dirname}/index.html`);
+
+  win.on("focus", () => {
+    win.webContents.send("focus-textbox");
+  });
+
+  return win;
+}
+
+app.on("ready", () => {
+  Nucleus.init("638d9ccf4a5ed2dae43ce122");
+
+  let lastFocusedWindow = createWindow();
 
   globalShortcut.register("CommandOrControl+Shift+g", () => {
-    if (mainWindow.isVisible() && mainWindow.isFocused()) {
-      mainWindow.hide();
-
+    if (lastFocusedWindow.isVisible() && lastFocusedWindow.isFocused()) {
+      // lastFocusedWindow.hide(); // this causes some issues with the window not showing up again
       // restore focus to the previous app on mac
       if (process.platform == "darwin") {
         app.hide();
       }
     } else {
-      mainWindow.show();
-      mainWindow.focus();
+      app.show();
+      lastFocusedWindow.show();
+      lastFocusedWindow.focus();
     }
-  });
-
-  mainWindow.on("focus", () => {
-    mainWindow.webContents.send("focus-textbox");
-  });
-
-  mainWindow.on("ready", () => {
-    const menu = new Menu();
-    Menu.setApplicationMenu(menu);
-
-    console.log("Standalone app is ready.");
   });
 
   app.on("web-contents-created", (e, contents) => {
     if (contents.getType() == "webview") {
+      const window = BrowserWindow.fromWebContents(contents);
+
+      window.on("focus", () => {
+        lastFocusedWindow = window;
+      });
+
       contents.on("dom-ready", () => {
-        mainWindow.show();
-        mainWindow.focus();
+        lastFocusedWindow.show();
+        lastFocusedWindow.focus();
 
         setTimeout(function () {
-          mainWindow.webContents.send("focus-textbox");
+          lastFocusedWindow.webContents.send("focus-textbox");
         }, 1000);
       });
+
       // open link with external browser in webview
       contents.on("new-window", (e, url) => {
         e.preventDefault();
         shell.openExternal(url);
       });
+
       // set context menu in webview
       contextMenu({
         window: contents,
@@ -83,34 +89,31 @@ app.on("ready", () => {
       contents.on("before-input-event", (event, input) => {
         const { control, meta, key } = input;
         if (!control && !meta) return;
+        if (key === "n") {
+          console.log("cmd+n pressed");
+          lastFocusedWindow = createWindow();
+        }
+
         if (key === "t") {
           console.log("cmd+t pressed");
-          mainWindow.webContents.send("new-tab-shortcut");
+          lastFocusedWindow.webContents.send("new-tab-shortcut");
         }
         if (key === "w") {
           event.preventDefault();
           console.log("cmd+w pressed");
-          mainWindow.webContents.send("close-tab-shortcut");
+          lastFocusedWindow.webContents.send("close-tab-shortcut");
         }
         if (key === "]") {
           console.log("cmd+] pressed");
-          mainWindow.webContents.send("next-tab-shortcut");
+          lastFocusedWindow.webContents.send("next-tab-shortcut");
         }
         if (key === "[") {
           console.log("cmd+[ pressed");
-          mainWindow.webContents.send("prev-tab-shortcut");
+          lastFocusedWindow.webContents.send("prev-tab-shortcut");
         }
       });
     }
   });
-
-  // open links in new window
-  // app.on("web-contents-created", (event, contents) => {
-  //   contents.on("will-navigate", (event, navigationUrl) => {
-  //     event.preventDefault();
-  //     shell.openExternal(navigationUrl);
-  //   });
-  // });
 
   // prevent background flickering
   app.commandLine.appendSwitch(
