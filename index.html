@@ -8,7 +8,6 @@
 </head>
 
 <body class="myarrow">
-  <div class="close-button"></div>
   <tab-group new-tab-button="true" sortable="true">
     <style>
       .views {
@@ -53,18 +52,18 @@
     });
 
     window.electronAPI.onNextTabShortcut((_event) => {
-      let nextTab = tabGroup.getTabByRelPosition(1);
-      if (nextTab === null) {
-        nextTab = tabGroup.getTabByPosition(-1);
-      }
+      const currentTab = tabGroup.getActiveTab();
+      const amountOfTabs = tabGroup.getTabs().length;
+      const nextTabIndex = (currentTab.getPosition() + 1) % amountOfTabs;
+      const nextTab = tabGroup.getTabByPosition(nextTabIndex);
       nextTab.activate();
     });
 
     window.electronAPI.onPrevTabShortcut((_event) => {
-      let prevTab = tabGroup.getTabByRelPosition(-1);
-      if (prevTab === null) {
-        prevTab = tabGroup.getTabByPosition(0);
-      }
+      const currentTab = tabGroup.getActiveTab();
+      const amountOfTabs = tabGroup.getTabs().length;
+      const prevTabIndex = (currentTab.getPosition() + amountOfTabs - 1) % amountOfTabs;
+      const prevTab = tabGroup.getTabByPosition(prevTabIndex);
       prevTab.activate();
     });
   </script>
@@ -95,14 +94,6 @@
     window.electronAPI.onFocusTextbox((_event) => {
       focusIframeAndTextbox();
     })
-
-    // Add event listener to close button
-    const closeButton = document.querySelector(".close-button");
-    closeButton.addEventListener("click", () => {
-      window.close();
-    });
-
-    // TODO: in this JS code, create the close button in js, access the shadow dom and insert it when web content has loaded (in the event listener). Style it so that it is stored in the nav component
   </script>
 
 </body>
