@@ -1,6 +1,6 @@
 {
-  "name": "chatgpt-mac",
-  "productName": "chatgpt-mac",
+  "name": "windowed-chatgpt",
+  "productName": "windowed-chatgpt",
   "version": "0.0.1",
   "description": "Windowed ChatGPT with auto focus",
   "main": "index.js",
