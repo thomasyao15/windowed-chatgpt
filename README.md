@@ -1,9 +1,7 @@
 # Windowed ChatGPT with auto focus
 
-This app wraps ChatGPT in a tab-able window. The primary functionality this app adds is auto-focus on the prompt textbox (on window refocus or tab change) to allow for easier input and better compatability with Alfred workflows (coming soon).
+![image](https://user-images.githubusercontent.com/64414639/236674426-88d057c8-c052-4a37-b15c-43068d60e12b.png)
 
-Inspired by @vincelwt's [chatgpt-mac](https://github.com/vincelwt/chatgpt-mac), which formed the foundation of this app.
+Windowed ChatGPT is an app that enhances the ChatGPT experience by wrapping it in a tab-able window. In addition to the base functionality of ChatGPT, this app adds several key features including multiple tabs, multiple windows, and a global shortcut for quick access. The app also has auto-focus functionality on the prompt textbox to make input easier and allow for better compatibility with Alfred workflows (coming soon).
 
-## Credit
-
-All credit and copyrights goes to OpenAI and @vincelwt.
+This app was inspired by the work of @vincelwt's chatgpt-mac, which formed the foundation of this app. All credit and copyrights go to OpenAI and @vincelwt.
