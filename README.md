@@ -33,7 +33,7 @@ Supported shortcuts out of the box:
 ## Alfred and Obsidian Integrations
 
 I wrote this app specifically to support some Alfred workflows I had in mind. Try them out here (keep in mind you need the Alfred Powerpack):
-* https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-GPT.alfredworkflow
+* [Windowed-GPT.alfredworkflow](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-GPT.alfredworkflow) - simply open the file and install on Alfred
 
 In order for the Obsidian workflow to work, you need to manually install the Obsidian plugin here
 * https://github.com/thomasyao15/obsidian-gpt-helper
