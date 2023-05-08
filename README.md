@@ -19,26 +19,6 @@ Simply download and install one of the following packages depending on your devi
 
 If it opens successfully, MacOS will trust the app from now on.
 
-## Alfred and Obsidian Integrations
-
-I wrote this app specifically to support some Alfred workflows I had in mind. Try them out here (keep in mind you need the Alfred Powerpack):
-* https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-GPT.alfredworkflow
-
-In order for the Obsidian workflow to work, you need to manually install the Obsidian plugin here
-* https://github.com/thomasyao15/obsidian-gpt-helper
-
-#### What does the workflow (currently) do?
-
-- Use the keyword 'ask' followed by a general ChatGPT prompt to automatically launch the ChatGPT app and submit the prompt
-- Use the keyword 'tma' (teach me anything) followed by any content you want ChatGPT to comprehensively explain
-  - This adds extra instructions in front of the content (auto prompt-engineering)
-- Use the hotkey CMD + Option + Z to launch tma on any highlighted text on MacOS 
-  - Super useful if you want to quickly learn deeply about any content you're reading, you can keep chaining `tma` prompts from within the Windowed ChatGPT app
-- Use the hotkey CMD + Option + A to append any highlighted text in MacOS to the currently opened obsidian file (you must have the plugin mentioned above installed on Obsidian)
-  - This is useful if you learn anything new from `tma` or any other sources and want to quickly save the information to your Obsidian notes
-
-Feel free to create your own triggers, add as many extra prompts to fit your needs, this app's prompt-auto-focus makes it easy to input any custom prompts from workflows.
-
 ## Shortcuts
 
 Supported shortcuts out of the box:
@@ -49,5 +29,30 @@ Supported shortcuts out of the box:
 * CTRL + ]: switch to the next tab
 * CTRL + [: switch to the previous tab
 * CTRL + r: reload the current tab
+
+## Alfred and Obsidian Integrations
+
+I wrote this app specifically to support some Alfred workflows I had in mind. Try them out here (keep in mind you need the Alfred Powerpack):
+* https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-GPT.alfredworkflow
+
+In order for the Obsidian workflow to work, you need to manually install the Obsidian plugin here
+* https://github.com/thomasyao15/obsidian-gpt-helper
+
+### What does the workflow (currently) do?
+
+- Use the keyword 'ask' followed by a general ChatGPT prompt to automatically launch the ChatGPT app and submit the prompt
+  - ![image](https://user-images.githubusercontent.com/64414639/236802293-c634ed5d-e4c9-4a2f-b8db-249e15007849.png)
+- Use the keyword 'tma' (teach me anything) followed by any content you want ChatGPT to comprehensively explain
+  - This adds extra instructions in front of the content (auto prompt-engineering)
+  - ![image](https://user-images.githubusercontent.com/64414639/236802563-6878b413-3cf9-46f6-983a-5859e5604504.png)
+- Use the hotkey CMD + Option + Z to launch tma on any highlighted text on MacOS 
+  - Super useful if you want to quickly learn deeply about any content you're reading, you can keep chaining `tma` prompts from within the Windowed ChatGPT app
+- Use the hotkey CMD + Option + A to append any highlighted text in MacOS to the currently opened obsidian file (you must have the plugin mentioned above installed on Obsidian)
+  - ![image](https://user-images.githubusercontent.com/64414639/236803081-b71d1e6a-f238-4b4c-89fa-f08dfc55b992.png)
+  - This is useful if you learn anything new from `tma` or any other sources and want to quickly save the information to your Obsidian notes
+
+Feel free to create your own triggers, add as many extra prompts to fit your needs, this app's prompt-auto-focus makes it easy to input any custom prompts from workflows.
+
+---
 
 This app was inspired by the work of @vincelwt's chatgpt-mac, which formed the foundation of this app. All credit and copyrights go to OpenAI and @vincelwt.
