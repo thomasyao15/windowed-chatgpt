@@ -6,7 +6,7 @@ Windowed ChatGPT is an app that enhances the ChatGPT experience by wrapping it i
 
 ## Installation
 
-Simply download and install one of the following packages depending on your device:
+Download one of the following packages depending on your device and follow the steps below:
 * [Windowed-ChatGPT.0.0.1.arm64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.arm64-new.dmg) - for Apple Silicon Macs
 * [Windowed-ChatGPT.0.0.1.x64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.x64.dmg) - for Intel-based Macs
 
@@ -40,9 +40,9 @@ In order for the Obsidian workflow to work, you need to manually install the Obs
 
 ### What does the workflow (currently) do?
 
-- Use the keyword 'ask' followed by a general ChatGPT prompt to automatically launch the ChatGPT app and submit the prompt
+- Use the keyword `ask` followed by a general ChatGPT prompt to automatically launch the ChatGPT app and submit the prompt
   - ![image](https://user-images.githubusercontent.com/64414639/236802293-c634ed5d-e4c9-4a2f-b8db-249e15007849.png)
-- Use the keyword 'tma' (teach me anything) followed by any content you want ChatGPT to comprehensively explain
+- Use the keyword `tma` (teach me anything) followed by any content you want ChatGPT to comprehensively explain
   - This adds extra instructions in front of the content (auto prompt-engineering)
   - ![image](https://user-images.githubusercontent.com/64414639/236802563-6878b413-3cf9-46f6-983a-5859e5604504.png)
 - Use the hotkey CMD + Option + Z to launch tma on any highlighted text on MacOS 
