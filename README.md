@@ -7,10 +7,17 @@ Windowed ChatGPT is an app that enhances the ChatGPT experience by wrapping it i
 ## Installation
 
 Simply download and install one of the following packages depending on your device:
-* [Windowed-ChatGPT.0.0.1.arm64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.arm64.dmg) - for Apple Silicon Macs
+* [Windowed-ChatGPT.0.0.1.arm64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.arm64-new.dmg) - for Apple Silicon Macs
 * [Windowed-ChatGPT.0.0.1.x64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.x64.dmg) - for Intel-based Macs
 
-After downloading, simply drag-and-drop the app into the Applications folder to install it.
+**IMPORTANT:** the .dmg files have not been code signed, so please follow these steps to install the app:
+1. Open the .dmg file and drag the app into the Applications folder
+2. Try to open the application
+3. When the 'broken file' prompt pops up, click **cancel**
+4. Enter this command in terminal: `xattr -d com.apple.quarantine /Applications/ChatGPT.app`
+5. Open the application
+
+If it opens successfully, MacOS will trust the app from now on.
 
 ## Shortcuts
 
