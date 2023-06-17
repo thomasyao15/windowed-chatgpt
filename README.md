@@ -30,7 +30,9 @@ If it opens successfully, MacOS will trust the app from now on.
 
 Supported shortcuts out of the box:
 
-* CTRL + shift + G: show/hide all GPT windows
+* CTRL + shift + g: show/hide all GPT windows
+* CTRL + f: toggle full/wide chat mode to maximise the width of code blocks and messages
+* CTRL + b: toggle side bar in mobile and desktop view
 * CTRL + t: open a new GPT tab
 * CTRL + w: close the current tab
 * CTRL + n: open a new GPT window
