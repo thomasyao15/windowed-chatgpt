@@ -77,26 +77,29 @@
         iframe.focus(); // this needs to get focused instead of the webview for the textarea to get properly focused!
 
         activeWebview.executeJavaScript(`
-          setTimeout(function() {
-            const textarea = document.querySelector('textarea');
-            textarea.placeholder = 'Auto focused this textbox';
-            textarea.focus();
-          }, 100);
-          console.log('focused textbox');
-        `);
+        setTimeout(function() {
+          const textarea = document.querySelector('textarea');
+          textarea.placeholder = 'Auto focused this textbox';
+          textarea.focus();
+        }, 100);
+        console.log('focused textbox');
+      `);
       }, 100)
     }
 
-    const activateWidescreen = function () {
+    const toggleWidescreen = function () {
       setTimeout(function () {
         const tabGroupShadowRoot = tabGroup.shadowRoot;
         const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
 
         activeWebview.executeJavaScript(`
-        if (!document.querySelector('#injected-style')) {
-          const style = document.createElement('style');
-          style.id = 'injected-style';
-          style.innerHTML = \`
+        var wideScreenStyle = document.querySelector('#injected-style');
+        if (!wideScreenStyle) {
+          wideScreenStyle = document.createElement('style');
+          wideScreenStyle.id = 'injected-style';
+          // remove max-width from each chat message
+          // add padding to the left and right of the chat messages so that they don't take up the whole screen
+          wideScreenStyle.innerHTML = \`
             .flex.p-4.gap-4.text-base {
               max-width: 100% !important;
             }
@@ -107,13 +110,16 @@
               }
             }
           \`;
-          document.head.appendChild(style);
+          document.head.appendChild(wideScreenStyle);
+          wideScreenStyle.disabled = true;
           console.log('Injected CSS');
         }
-        `);
+        
+        wideScreenStyle.disabled = !wideScreenStyle.disabled;
+        console.log('Toggled widescreen mode: ' + (wideScreenStyle.disabled ? 'off' : 'on'));
+      `);
       }, 100);
     };
-
 
     tabGroup.on("tab-active", (tab, tabGroup) => {
       focusIframeAndTextbox();
@@ -121,6 +127,10 @@
 
     window.electronAPI.onFocusTextbox((_event) => {
       focusIframeAndTextbox();
+    })
+
+    window.electronAPI.onToggleWidescreen((_event) => {
+      toggleWidescreen();
     })
   </script>
 

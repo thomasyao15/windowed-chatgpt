@@ -9,4 +9,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
     ipcRenderer.on("next-tab-shortcut", callback),
   onPrevTabShortcut: (callback) =>
     ipcRenderer.on("prev-tab-shortcut", callback),
+  onToggleWidescreen: (callback) =>
+    ipcRenderer.on("toggle-widescreen", callback),
 });

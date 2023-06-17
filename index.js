@@ -174,6 +174,10 @@ app.on("ready", () => {
           console.log("cmd+i pressed");
           lastFocusedWindow.webContents.send("focus-textbox");
         }
+        if (key === "f") {
+          console.log("cmd+f pressed");
+          lastFocusedWindow.webContents.send("toggle-widescreen");
+        }
       });
     }
   });
