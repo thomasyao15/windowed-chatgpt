@@ -11,10 +11,10 @@ and allow for better compatibility with Alfred workflows (coming soon).
 
 Download one of the following packages depending on your device and follow the steps below:
 
-* [Windowed-ChatGPT.0.0.1.arm64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.arm64-new.dmg) -
+* [Windowed-ChatGPT.0.0.2.arm64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.2/ChatGPT.dmg) -
   for Apple Silicon Macs
 * [Windowed-ChatGPT.0.0.1.x64.dmg](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-ChatGPT.0.0.1.x64.dmg) -
-  for Intel-based Macs
+  for Intel-based Macs (not updated with wide screen mode or toggle sidebar)
 
 **IMPORTANT:** the .dmg files have not been code signed, so please follow these steps to install the app:
 
@@ -45,7 +45,7 @@ Supported shortcuts out of the box:
 I wrote this app specifically to support some Alfred workflows I had in mind. Try them out here (keep in mind you need
 the Alfred Powerpack):
 
-* [Windowed-GPT.alfredworkflow](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.1/Windowed-GPT.alfredworkflow) -
+* [Windowed-GPT.v0.0.2.alfredworkflow](https://github.com/thomasyao15/windowed-chatgpt/releases/download/v0.0.2/Windowed-GPT-0.0.2.alfredworkflow) -
   simply open the file and install on Alfred
 
 In order for the Obsidian workflow to work, you need to manually install the Obsidian plugin here
