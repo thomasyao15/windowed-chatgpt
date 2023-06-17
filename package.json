@@ -11,7 +11,8 @@
     "make": " electron-forge make --arch arm64,x64",
     "publish": "electron-forge publish --arch arm64,x64",
     "lint": "echo \"No linting configured\"",
-    "rebuild": "electron-rebuild"
+    "rebuild": "electron-rebuild",
+    "package-with-icon": "electron-packager . ChatGPT --overwrite --platform=darwin --arch=x64 --icon=./images/icon.icns"
   },
   "keywords": [
     "chatgpt",
