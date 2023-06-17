@@ -2,81 +2,81 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <title>ChatGPT</title>
-  <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8"/>
+    <title>ChatGPT</title>
+    <link rel="stylesheet" href="index.css"/>
 </head>
 
 <body>
-  <tab-group new-tab-button="true" sortable="true">
+<tab-group new-tab-button="true" sortable="true">
     <style>
-      .views {
-        background-color: rgb(46, 47, 57);
-      }
+        .views {
+            background-color: rgb(46, 47, 57);
+        }
 
-      .nav {
-        -webkit-app-region: drag;
-      }
+        .nav {
+            -webkit-app-region: drag;
+        }
 
-      .nav button,
-      .tabs {
-        -webkit-app-region: no-drag;
-      }
+        .nav button,
+        .tabs {
+            -webkit-app-region: no-drag;
+        }
     </style>
-  </tab-group>
-  <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
-  <script>
+</tab-group>
+<script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
+<script>
     const tabGroup = document.querySelector("tab-group");
     const tab = tabGroup.addTab({
-      title: "GPT",
-      src: "https://chat.openai.com/chat",
-      active: true,
-    });
-    tabGroup.setDefaultTab({
-      title: "GPT",
-      src: "https://chat.openai.com/chat",
-      active: true
-    });
-
-    window.electronAPI.onNewTabShortcut((_event) => {
-      const tab = tabGroup.addTab({
         title: "GPT",
         src: "https://chat.openai.com/chat",
         active: true,
-      });
+    });
+    tabGroup.setDefaultTab({
+        title: "GPT",
+        src: "https://chat.openai.com/chat",
+        active: true
+    });
+
+    window.electronAPI.onNewTabShortcut((_event) => {
+        const tab = tabGroup.addTab({
+            title: "GPT",
+            src: "https://chat.openai.com/chat",
+            active: true,
+        });
     });
 
     window.electronAPI.onCloseTabShortcut((_event) => {
-      const activeTab = tabGroup.getActiveTab();
-      activeTab.close();
+        const activeTab = tabGroup.getActiveTab();
+        activeTab.close();
     });
 
     window.electronAPI.onNextTabShortcut((_event) => {
-      const currentTab = tabGroup.getActiveTab();
-      const amountOfTabs = tabGroup.getTabs().length;
-      const nextTabIndex = (currentTab.getPosition() + 1) % amountOfTabs;
-      const nextTab = tabGroup.getTabByPosition(nextTabIndex);
-      nextTab.activate();
+        const currentTab = tabGroup.getActiveTab();
+        const amountOfTabs = tabGroup.getTabs().length;
+        const nextTabIndex = (currentTab.getPosition() + 1) % amountOfTabs;
+        const nextTab = tabGroup.getTabByPosition(nextTabIndex);
+        nextTab.activate();
     });
 
     window.electronAPI.onPrevTabShortcut((_event) => {
-      const currentTab = tabGroup.getActiveTab();
-      const amountOfTabs = tabGroup.getTabs().length;
-      const prevTabIndex = (currentTab.getPosition() + amountOfTabs - 1) % amountOfTabs;
-      const prevTab = tabGroup.getTabByPosition(prevTabIndex);
-      prevTab.activate();
+        const currentTab = tabGroup.getActiveTab();
+        const amountOfTabs = tabGroup.getTabs().length;
+        const prevTabIndex = (currentTab.getPosition() + amountOfTabs - 1) % amountOfTabs;
+        const prevTab = tabGroup.getTabByPosition(prevTabIndex);
+        prevTab.activate();
     });
-  </script>
-  <script>
+</script>
+<script>
     const focusIframeAndTextbox = function () {
-      setTimeout(function () {
-        const tabGroupShadowRoot = tabGroup.shadowRoot;
-        const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
-        const webviewShadowRoot = activeWebview.shadowRoot;
-        const iframe = webviewShadowRoot.querySelector('iframe');
-        iframe.focus(); // this needs to get focused instead of the webview for the textarea to get properly focused!
+        setTimeout(function () {
+            const tabGroupShadowRoot = tabGroup.shadowRoot;
+            const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
+            const webviewShadowRoot = activeWebview.shadowRoot;
+            const iframe = webviewShadowRoot.querySelector('iframe');
+            iframe.focus(); // this needs to get focused instead of the webview for the textarea to get properly focused!
 
-        activeWebview.executeJavaScript(`
+            activeWebview.executeJavaScript(`
         setTimeout(function() {
           const textarea = document.querySelector('textarea');
           textarea.placeholder = 'Auto focused this textbox';
@@ -84,55 +84,56 @@
         }, 100);
         console.log('focused textbox');
       `);
-      }, 100)
+        }, 100)
     }
 
-    const toggleWidescreen = function () {
-      setTimeout(function () {
-        const tabGroupShadowRoot = tabGroup.shadowRoot;
-        const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
-
-        activeWebview.executeJavaScript(`
-        var wideScreenStyle = document.querySelector('#injected-style');
-        if (!wideScreenStyle) {
-          wideScreenStyle = document.createElement('style');
-          wideScreenStyle.id = 'injected-style';
-          // remove max-width from each chat message
-          // add padding to the left and right of the chat messages so that they don't take up the whole screen
-          wideScreenStyle.innerHTML = \`
-            .flex.p-4.gap-4.text-base {
-              max-width: 100% !important;
-            }
-            @media (min-width: 1024px) {
-              .group.w-full.text-gray-800 {
-                padding-left: 2rem;
-                padding-right: 2rem;
-              }
-            }
-          \`;
-          document.head.appendChild(wideScreenStyle);
-          wideScreenStyle.disabled = true;
-          console.log('Injected CSS');
-        }
-        
-        wideScreenStyle.disabled = !wideScreenStyle.disabled;
-        console.log('Toggled widescreen mode: ' + (wideScreenStyle.disabled ? 'off' : 'on'));
-      `);
-      }, 100);
-    };
-
     tabGroup.on("tab-active", (tab, tabGroup) => {
-      focusIframeAndTextbox();
+        focusIframeAndTextbox();
     });
 
     window.electronAPI.onFocusTextbox((_event) => {
-      focusIframeAndTextbox();
+        focusIframeAndTextbox();
     })
+</script>
+<script>
+    const toggleWidescreen = function () {
+        setTimeout(function () {
+            const tabGroupShadowRoot = tabGroup.shadowRoot;
+            const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
+
+            activeWebview.executeJavaScript(`
+                var wideScreenStyle = document.querySelector('#injected-style');
+                if (!wideScreenStyle) {
+                  wideScreenStyle = document.createElement('style');
+                  wideScreenStyle.id = 'injected-style';
+                  // remove max-width from each chat message
+                  // add padding to the left and right of the chat messages so that they don't take up the whole screen
+                  wideScreenStyle.innerHTML = \`
+                    .flex.p-4.gap-4.text-base {
+                      max-width: 100% !important;
+                    }
+                    @media (min-width: 1024px) {
+                      .group.w-full.text-gray-800 {
+                        padding-left: 2rem;
+                        padding-right: 3rem;
+                      }
+                    }
+                  \`;
+                  document.head.appendChild(wideScreenStyle);
+                  wideScreenStyle.disabled = true;
+                  console.log('Injected CSS');
+                }
+
+                wideScreenStyle.disabled = !wideScreenStyle.disabled;
+                console.log('Toggled widescreen mode: ' + (wideScreenStyle.disabled ? 'off' : 'on'));
+            `);
+        }, 100);
+    };
 
     window.electronAPI.onToggleWidescreen((_event) => {
-      toggleWidescreen();
+        toggleWidescreen();
     })
-  </script>
+</script>
 
 </body>
 
