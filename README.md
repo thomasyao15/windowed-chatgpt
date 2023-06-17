@@ -33,6 +33,7 @@ Supported shortcuts out of the box:
 * CTRL + shift + g: show/hide all GPT windows
 * CTRL + f: toggle full/wide chat mode to maximise the width of code blocks and messages
 * CTRL + b: toggle side bar in mobile and desktop view
+* CTRL + i: trigger focus on the input textbox
 * CTRL + t: open a new GPT tab
 * CTRL + w: close the current tab
 * CTRL + n: open a new GPT window
