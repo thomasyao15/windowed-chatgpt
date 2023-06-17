@@ -12,7 +12,8 @@
     "publish": "electron-forge publish --arch arm64,x64",
     "lint": "echo \"No linting configured\"",
     "rebuild": "electron-rebuild",
-    "package-with-icon": "electron-packager . ChatGPT --overwrite --platform=darwin --arch=x64 --icon=./images/icon.icns"
+    "package-with-icon": "electron-packager . ChatGPT --overwrite --platform=darwin --arch=x64 --icon=./images/icon.icns",
+    "make-dmg": "electron-installer-dmg ./ChatGPT-darwin-x64/ChatGPT.app ChatGPT"
   },
   "keywords": [
     "chatgpt",
