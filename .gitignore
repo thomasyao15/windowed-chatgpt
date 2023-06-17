@@ -89,3 +89,5 @@ typings/
 out/
 
 .env
+
+/ChatGPT-darwin-x64/
