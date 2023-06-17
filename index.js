@@ -170,6 +170,10 @@ app.on("ready", () => {
           console.log("cmd+[ pressed");
           lastFocusedWindow.webContents.send("prev-tab-shortcut");
         }
+        if (key === "i") {
+          console.log("cmd+i pressed");
+          lastFocusedWindow.webContents.send("focus-textbox");
+        }
       });
     }
   });
