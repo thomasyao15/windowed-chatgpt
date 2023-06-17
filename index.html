@@ -82,9 +82,38 @@
             textarea.placeholder = 'Auto focused this textbox';
             textarea.focus();
           }, 100);
+          console.log('focused textbox');
         `);
       }, 100)
     }
+
+    const activateWidescreen = function () {
+      setTimeout(function () {
+        const tabGroupShadowRoot = tabGroup.shadowRoot;
+        const activeWebview = tabGroupShadowRoot.querySelector('webview.view.visible');
+
+        activeWebview.executeJavaScript(`
+        if (!document.querySelector('#injected-style')) {
+          const style = document.createElement('style');
+          style.id = 'injected-style';
+          style.innerHTML = \`
+            .flex.p-4.gap-4.text-base {
+              max-width: 100% !important;
+            }
+            @media (min-width: 1024px) {
+              .group.w-full.text-gray-800 {
+                padding-left: 2rem;
+                padding-right: 2rem;
+              }
+            }
+          \`;
+          document.head.appendChild(style);
+          console.log('Injected CSS');
+        }
+        `);
+      }, 100);
+    };
+
 
     tabGroup.on("tab-active", (tab, tabGroup) => {
       focusIframeAndTextbox();
