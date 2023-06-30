@@ -1,13 +1,13 @@
 # Windowed ChatGPT with auto focus
 
 Windowed ChatGPT is an app that enhances the ChatGPT experience by wrapping it in a tab-able window. In addition to the
-base functionality of ChatGPT, this app adds several key features including multiple tabs, multiple windows, and a
+base functionality of ChatGPT, this app adds several enhancements detailed below including, full width code blocks, various shortcuts within the app to increase efficiency and a
 global shortcut for quick access. The app also has auto-focus functionality on the prompt textbox to make input easier
-and allow for better compatibility with Alfred workflows (coming soon).
+and allow for better compatibility with Alfred workflows.
 
 ![image](https://user-images.githubusercontent.com/64414639/236674514-94d87c55-9a16-4556-b6b1-cb29528bb020.png)
 
-## Installation
+# Installation
 
 Download one of the following packages depending on your device and follow the steps below:
 
@@ -26,20 +26,24 @@ Download one of the following packages depending on your device and follow the s
 
 If it opens successfully, MacOS will trust the app from now on.
 
-## Shortcuts
+# Shortcuts
 
-Supported shortcuts out of the box:
+Supported shortcuts out of the box (use CMD for MacOS):
 
-* CTRL + shift + g: show/hide all GPT windows
-* CTRL + f: toggle full/wide chat mode to maximise the width of code blocks and messages
-* CTRL + b: toggle side bar in mobile and desktop view
-* CTRL + i: trigger focus on the input textbox
-* CTRL + t: open a new GPT tab
-* CTRL + w: close the current tab
-* CTRL + n: open a new GPT window
-* CTRL + ]: switch to the next tab
-* CTRL + [: switch to the previous tab
-* CTRL + r: reload the current tab
+* CMD/CTRL + shift + g: show/hide all GPT windows
+* CMD/CTRL + f: toggle full/wide chat mode to maximise the width of code blocks and messages
+* CMD/CTRL + b: toggle side bar in mobile and desktop view
+* CMD/CTRL + i: trigger focus on the input textbox
+* CMD/CTRL + t: open a new GPT tab
+* CMD/CTRL + w: close the current tab
+* CMD/CTRL + n: open a new GPT window
+* CMD/CTRL + ]: switch to the next tab
+* CMD/CTRL + [: switch to the previous tab
+* CMD/CTRL + r: reload the current tab
+
+You can customise shortcuts specifically for this application using tools like [BetterTouchTool](https://folivora.ai/).
+
+### Alfred shortcuts
 
 ## Alfred and Obsidian Integrations
 
