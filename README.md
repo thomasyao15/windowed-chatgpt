@@ -43,9 +43,20 @@ Supported shortcuts out of the box (use CMD for MacOS):
 
 You can customise shortcuts specifically for this application using tools like [BetterTouchTool](https://folivora.ai/).
 
-### Alfred shortcuts
+### Alfred shortcuts (installation instructions below)
+
+* CMD + Opt + CTRL + a: **a**sk GPT anything about anything currently selected in MacOS
+* CMD + Opt + CTRL + i: tell GPT to directly modify selected code and return it in a code block
+    * ![image](https://github.com/thomasyao15/windowed-chatgpt/assets/64414639/3be76ae5-1464-4dc1-9477-ec18c3753d34)
+* CMD + Opt + CTRL + c: trigger quick **c**hat to ask GPT anything from anywhere in the OS
+* CMD + Opt + x: tell GPT to explain everything you need to know about the current selection in MacOS
+* CMD + Opt + CTRL + x: tell GPT to explain everything you need to know about entered text
+* CMD + Opt + A: append any MacOS text selection to the currently opened Obsidian file
 
 ## Alfred and Obsidian Integrations
+
+![image](https://github.com/thomasyao15/windowed-chatgpt/assets/64414639/ed69cc96-a9a3-4160-9d95-96da15aaf8f2)
+
 
 I wrote this app specifically to support some Alfred workflows I had in mind. Try them out here (keep in mind you need
 the Alfred Powerpack):
@@ -57,7 +68,7 @@ In order for the Obsidian workflow to work, you need to manually install the Obs
 
 * https://github.com/thomasyao15/obsidian-gpt-helper
 
-### What does the workflow (currently) do?
+### What does the workflow currently do?
 
 - Use the keyword `ask` followed by a general ChatGPT prompt to automatically launch the ChatGPT app and submit the
   prompt
@@ -65,7 +76,7 @@ In order for the Obsidian workflow to work, you need to manually install the Obs
 - Use the keyword `tma` (teach me anything) followed by any content you want ChatGPT to comprehensively explain
     - This adds extra instructions in front of the content (auto prompt-engineering)
     - ![image](https://user-images.githubusercontent.com/64414639/236802563-6878b413-3cf9-46f6-983a-5859e5604504.png)
-- Use the hotkey CMD + Option + Z to launch tma on any highlighted text on MacOS
+- Use the hotkey CMD + Option + X to launch tma on any highlighted text on MacOS
     - Super useful if you want to quickly learn deeply about any content you're reading, you can keep chaining `tma`
       prompts from within the Windowed ChatGPT app
 - Use the hotkey CMD + Option + A to append any highlighted text in MacOS to the currently opened obsidian file (you
