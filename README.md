@@ -32,6 +32,7 @@ Supported shortcuts out of the box (use CMD for MacOS):
 
 * CMD/CTRL + shift + g: show/hide all GPT windows
 * CMD/CTRL + f: toggle full/wide chat mode to maximise the width of code blocks and messages
+    * ![image](https://github.com/thomasyao15/windowed-chatgpt/assets/64414639/90445236-f0c2-4d04-836f-1949442b7764)
 * CMD/CTRL + b: toggle side bar in mobile and desktop view
 * CMD/CTRL + i: trigger focus on the input textbox
 * CMD/CTRL + t: open a new GPT tab
@@ -53,7 +54,7 @@ You can customise shortcuts specifically for this application using tools like [
 * CMD + Opt + CTRL + x: tell GPT to explain everything you need to know about entered text
 * CMD + Opt + A: append any MacOS text selection to the currently opened Obsidian file
 
-## Alfred and Obsidian Integrations
+# Alfred and Obsidian Integrations
 
 ![image](https://github.com/thomasyao15/windowed-chatgpt/assets/64414639/ed69cc96-a9a3-4160-9d95-96da15aaf8f2)
 
@@ -88,7 +89,7 @@ In order for the Obsidian workflow to work, you need to manually install the Obs
 Feel free to create your own triggers, add as many extra prompts to fit your needs, this app's prompt-auto-focus makes
 it easy to input any custom prompts from workflows.
 
-### Contributing
+# Contributing
 
 * When you are ready to package your changes, make sure the body of the initUpdater function in update-electron-app (
   node_modules) is commented out as it causes a code signing error when it tries to update on launch
